@@ -21,18 +21,18 @@ function App() {
         const receipt = await txn.wait();
         if(receipt.confirmations > 0 ) {
           setPauseState(true);
+          console.log('Update to true. ');
+          console.log(receipt);
         }
-        console.log('Update to true. ');
-        console.log(receipt);
-        
+    
       } else if (state === '0' && pauseState) {
         const txn = await contract.setPauseMinting(false);
         const receipt = await txn.wait();
         if(receipt.confirmations > 0 ) {
-          setPauseState(true);
+          setPauseState(false);
+          console.log('Update to false. ');
+          console.log(receipt);
         }
-        console.log('Update to false. ');
-        console.log(receipt);
       } else {
         // do nothing
       }
